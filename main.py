@@ -100,8 +100,10 @@ while startapp:
         original_image = raw_input("What is the name of the image?")
         output_path = "output.jpg"
         text = raw_input(colored('Enter your message?','red'))
-        Steganography.encode(original_image, output_path, text)
-
+        if len(text)<100:
+            Steganography.encode(original_image, output_path, text)
+        else:
+            print 'the length of message shoud not exceed 100'
         new_chat = ChatMessage(text,True)
 
         friends[friend_choice].chats.append(new_chat)
