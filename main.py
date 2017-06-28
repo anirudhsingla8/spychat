@@ -134,9 +134,9 @@ while startapp:
         print '\n6'
         for chat in friends[read_for].chats:
             if chat.sent_by_me:
-                print '[%s] %s: %s' %(chat.time.strftime("%d %B %Y"), 'you said:', chat.message)
+                print colored('[%s] %s: %s' %(chat.time.strftime("%d %B %Y"), 'you said:', chat.message),'blue')
             else:
-                print '[%s] %s said: %s' %(chat.time.strftime("%d %B %Y"), friends[read_for].name, chat.message)
+                print colored('[%s] %s said: %s' %(chat.time.strftime("%d %B %Y"), friends[read_for].name, chat.message),'blue')
 
 
 
