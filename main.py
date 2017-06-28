@@ -149,7 +149,16 @@ while startapp:
 
         if spy.age > 12 and spy.age < 50:
             print 'Authentication complete. Welcome ' + spy.name + ' age: ' + str(spy.age) + ' and rating of: ' + str(spy.rating) + ' Proud to have you onboard'
-
+            
+            if spy.rating > 4.5:
+                print 'Great ace!'
+            elif spy.rating > 3.5 and spy.rating <= 4.5:
+                print 'You are one of the good ones.'
+            elif spy.rating >= 2.5 and spy.rating <= 3.5:
+                print 'You can always do better'
+            else:
+                print 'We can always use somebody to help in the office.' 
+            
             show_menu = True
             # we have created the menu
             while show_menu:
