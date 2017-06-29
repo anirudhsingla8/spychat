@@ -208,7 +208,7 @@ while startapp:
         spy.name = raw_input('Welcome to spy chat, Enter your spyname first')
         if spy.name.isalpha():
             if len(spy.name) > 0:
-                spy.salutation = raw_input('Should we call you a Mr. or Miss.')
+                spy.salutation = raw_input('Should we call you a Mr. or Miss.or Dr. or anything else')
                 spy.age = raw_input('Please enter your age')
                 if spy.age.isdigit():
                     spy.age=int(spy.age)
