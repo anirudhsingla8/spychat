@@ -223,10 +223,10 @@ while start_app:
                 else:
                     print 'enter age only in valid datatype'
             else:
-                print 'Please enter a valid spyname'
+                print 'Please enter a spyname only in character no spaces are allowed and try again'
         else:
-            print 'Please enter only characters'
+            print 'Please enter only characters and no spaces alllowed and try again'
         start_app = False
     else:
-        print 'please enter a valid input'
+        print "please enter a valid response in 'Y' or 'N'"
 
