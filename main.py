@@ -3,20 +3,20 @@ from termcolor import colored
 from steganography.steganography import Steganography
 from datetime import datetime
 
-#we have declared till startapp is true it will run app
-startapp = True
-while startapp:
+# we have declared till start_app is true it will run app
+start_app = True
+while start_app:
 
-    #to start virtualenv type new_env\Scripts\activate in terminal
+    # to start virtualenv type new_env\Scripts\activate in terminal
     print 'Let\'s our app get started'
     # we are creating the variable for status messages
     status_messages = ['My name is Bond, James Bond', 'Shaken, not stirred.', 'Have a good day, Sir']
 
 
-    # we are selecting if we are continuing as deafult user or new user
+    # we are selecting if we are continuing as default user or new user
     question = 'Do you want to continue as '+spy.salutation+' '+spy.name+'(Y/N)?'
     existing = raw_input(question)
-    #we have created the add status function
+    # we have created the add status function
     def add_status():
         updated_status_message = None
 
@@ -29,7 +29,7 @@ while startapp:
 
         if default.upper() == 'N':
             new_status_message = raw_input('What do you want to set a new status')
-
+            # checking that the status is not empty  
             if len(new_status_message) > 0:
                 status_messages.append(new_status_message)
                 updated_status_message = new_status_message
@@ -38,11 +38,11 @@ while startapp:
 
         elif default.upper() == 'Y':
             item_position = 1
-
+            # chekcing for status in status_message list
             for message in status_messages:
                 print '%d. %s'%(item_position,message)
                 item_position = item_position + 1
-
+            # selecting a status
             message_selection = int(raw_input('\nChoose from above messages'))
 
             if len(status_messages) >= message_selection:
@@ -65,12 +65,12 @@ while startapp:
         new_friend = Spy('','',0,0.0)
 
         new_friend.name = raw_input("Please add your friend's name: ")
-        new_friend.salutation = raw_input("Are the Mr. or Mrs.?: ")
+        new_friend.salutation = raw_input("Are the Mr. or Mrs.or any other else? : ")
         new_friend.name = new_friend.name+' '+new_friend.salutation
         new_friend.age = int(raw_input('Age?'))
         new_friend.rating = float(raw_input('enter your rating'))
 
-        if len(new_friend.name) > 0 and new_friend.age > 12 and new_friend.rating >= spy.rating:
+        if len(new_friend.name) > 0 and 12 < new_friend.age < 50 and new_friend.rating >= spy.rating:
             friends.append(new_friend)
             print 'New Friend added'
         else:
@@ -82,8 +82,8 @@ while startapp:
     # here we are selecting the friend from friends list and then returning the index of selected friend
     def select_a_friend():
         item_number = 0
-        #we have declare new variable friend in which we are taking value of friends
-        #note :- friend is different from friends
+        # we have declare new variable friend in which we are taking value of friends
+        # note :- friend is different from friends
         for friend in friends:
             print '%d %s aged %d with rating %.2f is online' %(item_number + 1,friend.name,friend.age,friend.rating)
             item_number = item_number + 1
@@ -95,7 +95,8 @@ while startapp:
 
     # here we are encrypting our message and sending it
     def send_message():
-        #friend_choice is getting the friend to which we want to send message
+        # friend_choice is getting the friend to which we want to send message
+        # select a friend () is giveng the index of selected friend
         friend_choice = select_a_friend()
         original_image = raw_input("What is the name of the image?")
         output_path = "output.jpg"
@@ -115,7 +116,8 @@ while startapp:
 
     # here we are decrypting our message and sending it
     def read_message():
-        #here we are selecting a friend to hich messages we want to read
+        # here we are selecting a friend to which messages we want to read
+        # select a friend return the index of selected friend from friend function
         sender = select_a_friend()
         output_path = raw_input("What is the name of the file?")
         secret_text = Steganography.decode(output_path)
@@ -128,10 +130,12 @@ while startapp:
         print "Your secret message has been saved!"
 
 
-
+    # show the chat history for the selected user
     def read_chat_history():
         read_for = select_a_friend()
         print '\n6'
+        # read for return the index of selected friend for whom you want to read the messages
+        # .chat is list which store the chat for the user
         for chat in friends[read_for].chats:
             if chat.sent_by_me:
                 print colored('[%s] %s: %s' %(chat.time.strftime("%d %B %Y"), 'you said:', chat.message),'blue')
@@ -147,7 +151,7 @@ while startapp:
 
         spy.name = spy.salutation+' '+spy.name
 
-        if spy.age > 12 and spy.age < 50:
+        if 12 < spy.age <50 :
             print 'Authentication complete. Welcome ' + spy.name + ' age: ' + str(spy.age) + ' and rating of: ' + str(spy.rating) + ' Proud to have you onboard'
             
             if spy.rating > 4.5:
@@ -176,7 +180,7 @@ while startapp:
                             print 'You choose to add a friend'
                             #we got the no of friends from the user
                             number_of_friends = add_friend()
-                            print 'You have %d friends' % (number_of_friends)
+                            print 'You have %d friends' % number_of_friends
 
                         elif menu_choice == 3:
                             print 'You choose to send a secret message'
@@ -206,10 +210,12 @@ while startapp:
     elif existing.upper() == 'N':
         spy = Spy('','',0,0.0)
         spy.name = raw_input('Welcome to spy chat, Enter your spyname first')
+        # checking for the valid name
         if spy.name.isalpha():
             if len(spy.name) > 0:
                 spy.salutation = raw_input('Should we call you a Mr. or Miss.or Dr. or anything else')
                 spy.age = raw_input('Please enter your age')
+                # checking for the valid age
                 if spy.age.isdigit():
                     spy.age=int(spy.age)
                     spy.rating = float(raw_input('Enter your spy rating'))
@@ -220,7 +226,7 @@ while startapp:
                 print 'Please enter a valid spyname'
         else:
             print 'Please enter only characters'
-        startapp = False
+        start_app = False
     else:
         print 'please enter a valid input'
 
